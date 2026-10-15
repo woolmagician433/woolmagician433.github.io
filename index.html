@@ -1,0 +1,1462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>S2 — Gym T-Shirt Pre-Order</title>
+    <style>
+        /* Modern Raw Aluminum Theme */
+        :root {
+            --bg-base: #f2f4f8;
+            --bg-surface: #e8ecf2;
+            --bg-panel: linear-gradient(155deg, #ffffff 0%, #edf1f7 58%, #f5f7fb 100%);
+            --bg-card: linear-gradient(165deg, #ffffff 0%, #eff2f8 100%);
+            --bg-stage: radial-gradient(circle at 50% 42%, #ffffff 0%, #e4e9f2 78%);
+            --bg-input: #ffffff;
+            --bg-recessed: rgba(203, 213, 225, 0.45);
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --text-muted: #64748b;
+            --metal-text-gradient: linear-gradient(135deg, #0f172a 0%, #334155 52%, #64748b 100%);
+            --metal-btn-bg: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
+            --metal-btn-text: #f8fafc;
+            --metal-accent: #334155;
+            --border-hairline: rgba(15, 23, 42, 0.08);
+            --border-specular: rgba(255, 255, 255, 0.95);
+            --shadow-elevated: 0 20px 44px -14px rgba(15, 23, 42, 0.08), 0 2px 10px rgba(15, 23, 42, 0.03);
+            --header-glass: rgba(242, 244, 248, 0.84);
+            --radius-card: 20px;
+            --radius-sm: 12px;
+            --radius-pill: 999px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: var(--bg-base);
+            color: var(--text-primary);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+            /* Subtle anodized aluminum sheen */
+            body::before {
+                content: "";
+                position: fixed;
+                inset: 0;
+                pointer-events: none;
+                z-index: 0;
+                background: radial-gradient(ellipse 85% 45% at 50% -10%, rgba(255, 255, 255, 0.9), transparent 65%), repeating-linear-gradient( 90deg, rgba(15, 23, 42, 0.004) 0px, rgba(15, 23, 42, 0.004) 1px, transparent 1px, transparent 5px );
+            }
+
+        /* Top Status Bar */
+        .top-bar {
+            position: relative;
+            z-index: 10;
+            border-bottom: 1px solid var(--border-hairline);
+            background: var(--bg-surface);
+            color: var(--text-secondary);
+            text-align: center;
+            padding: 9px 16px;
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        /* Modern Glass Navigation */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 90;
+            background: var(--header-glass);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-hairline);
+        }
+
+        .nav-wrap {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 16px 28px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+        }
+
+        .brand-mark {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .brand-monogram {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            background: var(--metal-btn-bg);
+            color: var(--metal-btn-text);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 0.88rem;
+            letter-spacing: 0.06em;
+            box-shadow: 0 4px 12px rgba(15, 23, 42, 0.14);
+        }
+
+        .brand-name {
+            font-size: 1.15rem;
+            font-weight: 800;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 36px;
+            list-style: none;
+        }
+
+            .nav-links a {
+                color: var(--text-secondary);
+                text-decoration: none;
+                font-size: 0.86rem;
+                font-weight: 500;
+                transition: color 0.2s ease;
+            }
+
+                .nav-links a:hover {
+                    color: var(--text-primary);
+                }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Modern Aluminum & Slate Buttons */
+        .btn-metal-outline {
+            background: var(--bg-panel);
+            color: var(--text-primary);
+            border: 1px solid var(--border-hairline);
+            box-shadow: inset 0 1px 0 var(--border-specular), 0 2px 6px rgba(15, 23, 42, 0.04);
+            padding: 12px 20px;
+            border-radius: var(--radius-pill);
+            font-size: 0.82rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.22s ease;
+        }
+
+            .btn-metal-outline:hover {
+                border-color: rgba(15, 23, 42, 0.24);
+                transform: translateY(-1px);
+            }
+
+        .btn-metal-solid {
+            background: var(--metal-btn-bg);
+            color: var(--metal-btn-text);
+            border: 1px solid rgba(15, 23, 42, 0.9);
+            padding: 12px 24px;
+            border-radius: var(--radius-pill);
+            font-size: 0.82rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 8px 20px -4px rgba(15, 23, 42, 0.25);
+            transition: all 0.22s ease;
+            text-decoration: none;
+        }
+
+            .btn-metal-solid:hover {
+                filter: brightness(1.1);
+                transform: translateY(-1px);
+                box-shadow: 0 12px 24px -4px rgba(15, 23, 42, 0.32);
+            }
+
+        .badge-pill {
+            background: rgba(255, 255, 255, 0.2);
+            color: inherit;
+            padding: 2px 8px;
+            border-radius: var(--radius-pill);
+            font-size: 0.72rem;
+            font-weight: 700;
+        }
+
+        main {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Hero Section */
+        .hero {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 76px 28px 68px;
+            display: grid;
+            grid-template-columns: 1.12fr 0.88fr;
+            gap: 56px;
+            align-items: center;
+            border-bottom: 1px solid var(--border-hairline);
+        }
+
+            .hero h1 {
+                font-size: clamp(2.4rem, 4.5vw, 3.75rem);
+                font-weight: 700;
+                line-height: 1.08;
+                letter-spacing: -0.035em;
+                margin-bottom: 20px;
+                color: var(--text-primary);
+            }
+
+                .hero h1 span {
+                    display: block;
+                    font-weight: 400;
+                    color: var(--text-secondary);
+                }
+
+            .hero p {
+                color: var(--text-secondary);
+                font-size: 1.02rem;
+                line-height: 1.7;
+                max-width: 500px;
+                margin-bottom: 32px;
+            }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        /* Brushed Aluminum Pre-Order Goal Panel */
+        .tracker-panel {
+            background: var(--bg-panel);
+            border: 1px solid var(--border-hairline);
+            box-shadow: inset 0 1px 0 var(--border-specular), var(--shadow-elevated);
+            border-radius: var(--radius-card);
+            padding: 36px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tracker-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .tracker-label {
+            font-size: 0.76rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+        }
+
+        .status-dot {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.72rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            background: var(--bg-recessed);
+            padding: 5px 12px;
+            border-radius: var(--radius-pill);
+            border: 1px solid var(--border-hairline);
+        }
+
+            .status-dot::before {
+                content: "";
+                width: 6px;
+                height: 6px;
+                border-radius: 50%;
+                background: var(--text-primary);
+            }
+
+        .tracker-numbers {
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+
+        .tracker-current {
+            font-size: 3.1rem;
+            font-weight: 700;
+            letter-spacing: -0.04em;
+            line-height: 1;
+        }
+
+        .tracker-target {
+            color: var(--text-secondary);
+            font-size: 0.92rem;
+            font-weight: 500;
+        }
+
+        .progress-rail {
+            width: 100%;
+            height: 9px;
+            background: var(--bg-recessed);
+            border: 1px solid var(--border-hairline);
+            border-radius: var(--radius-pill);
+            overflow: hidden;
+            margin-bottom: 24px;
+            padding: 1px;
+        }
+
+        .progress-mercury {
+            height: 100%;
+            background: var(--metal-btn-bg);
+            border-radius: var(--radius-pill);
+            width: 0%;
+            transition: width 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .tracker-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            padding: 18px 0;
+            border-top: 1px solid var(--border-hairline);
+            border-bottom: 1px solid var(--border-hairline);
+            margin-bottom: 16px;
+        }
+
+        .stat-cell span {
+            display: block;
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            margin-bottom: 3px;
+            font-weight: 500;
+        }
+
+        .stat-cell strong {
+            font-size: 0.96rem;
+            font-weight: 700;
+        }
+
+        .tracker-footnote {
+            font-size: 0.82rem;
+            line-height: 1.55;
+            color: var(--text-secondary);
+        }
+
+        /* Sections */
+        .section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 72px 28px;
+            border-bottom: 1px solid var(--border-hairline);
+        }
+
+        .section-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 40px;
+        }
+
+            .section-head h2 {
+                font-size: 1.85rem;
+                font-weight: 700;
+                letter-spacing: -0.025em;
+            }
+
+        /* Product Grid */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+            gap: 28px;
+        }
+
+        .product-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-hairline);
+            box-shadow: inset 0 1px 0 var(--border-specular), var(--shadow-elevated);
+            border-radius: var(--radius-card);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.28s ease;
+        }
+
+            .product-card:hover {
+                transform: translateY(-4px);
+                border-color: rgba(15, 23, 42, 0.2);
+            }
+
+        .product-stage {
+            height: 280px;
+            background: var(--bg-stage);
+            border-bottom: 1px solid var(--border-hairline);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 28px;
+        }
+
+        .stage-badge-left {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            border: 1px solid var(--border-hairline);
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(8px);
+            padding: 4px 12px;
+            border-radius: var(--radius-pill);
+        }
+
+        .stage-badge-right {
+            position: absolute;
+            bottom: 14px;
+            right: 16px;
+            font-size: 0.72rem;
+            font-weight: 500;
+            color: var(--text-muted);
+        }
+
+        .tshirt-svg {
+            width: 195px;
+            height: 195px;
+            filter: drop-shadow(0 16px 24px rgba(15, 23, 42, 0.16));
+            transition: transform 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .product-card:hover .tshirt-svg {
+            transform: scale(1.04) translateY(-2px);
+        }
+
+        .product-info {
+            padding: 26px;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .product-header-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 12px;
+            margin-bottom: 10px;
+        }
+
+        .product-name {
+            font-size: 1.1rem;
+            font-weight: 700;
+            letter-spacing: -0.015em;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .product-pricing {
+            display: flex;
+            align-items: baseline;
+            gap: 6px;
+            white-space: nowrap;
+        }
+
+        .price-now {
+            font-size: 1.12rem;
+            font-weight: 800;
+        }
+
+        .price-was {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-decoration: line-through;
+        }
+
+        .product-summary {
+            font-size: 0.86rem;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-bottom: 18px;
+        }
+
+        .spec-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 20px;
+        }
+
+        .spec-chip {
+            font-size: 0.7rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            background: var(--bg-recessed);
+            border: 1px solid var(--border-hairline);
+            padding: 4px 11px;
+            border-radius: var(--radius-pill);
+        }
+
+        .control-label {
+            font-size: 0.74rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-bottom: 9px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .swatch-row {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 18px;
+        }
+
+        .swatch-btn {
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            border: 1px solid rgba(15, 23, 42, 0.2);
+            cursor: pointer;
+            transition: transform 0.18s ease, box-shadow 0.18s ease;
+            box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.35), 0 2px 5px rgba(15, 23, 42, 0.12);
+        }
+
+            .swatch-btn.active {
+                outline: 2px solid var(--text-primary);
+                outline-offset: 3px;
+                transform: scale(1.08);
+            }
+
+        .size-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 7px;
+            margin-bottom: 22px;
+        }
+
+        .size-pill {
+            background: var(--bg-recessed);
+            color: var(--text-secondary);
+            border: 1px solid var(--border-hairline);
+            padding: 8px 0;
+            border-radius: 10px;
+            font-size: 0.76rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.18s ease;
+        }
+
+            .size-pill:hover {
+                color: var(--text-primary);
+                border-color: rgba(15, 23, 42, 0.25);
+            }
+
+            .size-pill.active {
+                background: var(--metal-btn-bg);
+                color: var(--metal-btn-text);
+                border-color: var(--text-primary);
+                box-shadow: 0 4px 10px rgba(15, 23, 42, 0.18);
+            }
+
+        /* Process Grid */
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 22px;
+        }
+
+        .process-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border-hairline);
+            box-shadow: inset 0 1px 0 var(--border-specular), var(--shadow-elevated);
+            padding: 28px 24px;
+            border-radius: var(--radius-card);
+            transition: border-color 0.25s ease;
+        }
+
+            .process-box:hover {
+                border-color: rgba(15, 23, 42, 0.2);
+            }
+
+        .process-num {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            font-size: 0.76rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            background: var(--bg-recessed);
+            border: 1px solid var(--border-hairline);
+            border-radius: 50%;
+            margin-bottom: 14px;
+        }
+
+        .process-box h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            letter-spacing: -0.01em;
+        }
+
+        .process-box p {
+            font-size: 0.86rem;
+            line-height: 1.6;
+            color: var(--text-secondary);
+        }
+
+        /* Slide-Over Drawers */
+        .backdrop {
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 23, 42, 0.35);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            z-index: 200;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.24s ease, visibility 0.24s ease;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+            .backdrop.open {
+                opacity: 1;
+                visibility: visible;
+            }
+
+        .drawer {
+            background: var(--bg-base);
+            border-left: 1px solid var(--border-hairline);
+            width: 100%;
+            max-width: 480px;
+            height: 100%;
+            padding: 30px 26px;
+            overflow-y: auto;
+            box-shadow: -20px 0 50px rgba(15, 23, 42, 0.12);
+            transform: translateX(100%);
+            transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .backdrop.open .drawer {
+            transform: translateX(0);
+        }
+
+        .drawer-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 18px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--border-hairline);
+        }
+
+            .drawer-header h3 {
+                font-size: 1.02rem;
+                font-weight: 700;
+                letter-spacing: -0.01em;
+            }
+
+        .close-btn {
+            background: var(--bg-recessed);
+            border: 1px solid var(--border-hairline);
+            color: var(--text-secondary);
+            width: 34px;
+            height: 34px;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.18s ease;
+        }
+
+            .close-btn:hover {
+                color: var(--text-primary);
+                border-color: var(--text-secondary);
+            }
+
+        /* Form Controls */
+        .field-group {
+            margin-bottom: 16px;
+        }
+
+        .field-label {
+            display: block;
+            font-size: 0.74rem;
+            color: var(--text-secondary);
+            margin-bottom: 6px;
+            font-weight: 600;
+        }
+
+        .field-input {
+            width: 100%;
+            background: var(--bg-input);
+            border: 1px solid var(--border-hairline);
+            color: var(--text-primary);
+            padding: 11px 13px;
+            border-radius: 10px;
+            font-size: 0.88rem;
+            font-family: inherit;
+            transition: border-color 0.18s ease;
+        }
+
+            .field-input:focus {
+                outline: none;
+                border-color: var(--metal-accent);
+            }
+
+        .field-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        /* Bag Items */
+        .bag-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 0;
+            border-bottom: 1px solid var(--border-hairline);
+            gap: 12px;
+        }
+
+        .bag-item-title {
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .bag-item-sub {
+            font-size: 0.78rem;
+            color: var(--text-secondary);
+        }
+
+        .qty-box {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .qty-step {
+            background: var(--bg-input);
+            border: 1px solid var(--border-hairline);
+            color: var(--text-primary);
+            width: 28px;
+            height: 28px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        /* Size Spec Table */
+        .spec-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 12px;
+            font-size: 0.84rem;
+        }
+
+            .spec-table th,
+            .spec-table td {
+                padding: 11px 8px;
+                border-bottom: 1px solid var(--border-hairline);
+                text-align: left;
+            }
+
+            .spec-table th {
+                font-size: 0.72rem;
+                font-weight: 700;
+                text-transform: uppercase;
+                color: var(--text-secondary);
+            }
+
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: 24px;
+            left: 24px;
+            background: var(--metal-btn-bg);
+            color: var(--metal-btn-text);
+            padding: 12px 20px;
+            border-radius: var(--radius-pill);
+            font-size: 0.78rem;
+            font-weight: 600;
+            box-shadow: var(--shadow-elevated);
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(16px);
+            transition: transform 0.25s ease, opacity 0.25s ease;
+            z-index: 300;
+        }
+
+            .toast.visible {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+        footer {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 36px 28px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 880px) {
+            .hero {
+                grid-template-columns: 1fr;
+                padding-top: 44px;
+                gap: 36px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-bar" id="topAnnouncement">
+        S2 — ₹1 PRE-ORDER RESERVATIONS OPEN · FULL STORE LAUNCHES AT 100 ORDERS
+    </div>
+
+    <header>
+        <div class="nav-wrap">
+            <a href="#top" class="brand-mark">
+                <span class="brand-monogram">S2</span>
+                <span class="brand-name" id="headerBrandName">S2</span>
+            </a>
+
+            <ul class="nav-links">
+                <li><a href="#collection">Collection</a></li>
+                <li><a href="#process">How It Works</a></li>
+                <li><a href="#sizeBackdrop" id="navSizeBtn">Size Guide</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <button type="button" class="btn-metal-solid" id="openBagBtn" aria-label="Open Reservation Bag">
+                    <span>Bag</span>
+                    <span class="badge-pill" id="bagCounter">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main id="top">
+        <section class="hero">
+            <div>
+                <h1>
+                    Engineered for training.
+                    <span>Designed to move with you.</span>
+                </h1>
+                <p>
+                    Reserve your size from our debut heavyweight gym t-shirt lineup for ₹1 today. Once we reach 100 reservations, production begins and our full store goes live.
+                </p>
+                <div class="hero-actions">
+                    <a href="#collection" class="btn-metal-solid">Explore Collection</a>
+                    <button type="button" class="btn-metal-outline" id="heroSizeBtn">Fit Specifications</button>
+                </div>
+            </div>
+
+            <div class="tracker-panel">
+                <div class="tracker-top">
+                    <span class="tracker-label">Pre-Order Goal</span>
+                    <span class="status-dot" id="goalPercentBadge">0% RESERVED</span>
+                </div>
+
+                <div class="tracker-numbers">
+                    <span class="tracker-current" id="reservedCountDisplay">0</span>
+                    <span class="tracker-target">/ <span id="targetCountDisplay">100</span> pre-orders to launch store</span>
+                </div>
+
+                <div class="progress-rail">
+                    <div class="progress-mercury" id="goalProgressBar"></div>
+                </div>
+
+                <div class="tracker-grid">
+                    <div class="stat-cell">
+                        <span>Remaining</span>
+                        <strong id="remainingUnitsDisplay">100 Units</strong>
+                    </div>
+                    <div class="stat-cell">
+                        <span>Pre-Order Token</span>
+                        <strong>₹1 Today</strong>
+                    </div>
+                    <div class="stat-cell">
+                        <span>Est. Dispatch</span>
+                        <strong>14 Days</strong>
+                    </div>
+                </div>
+
+                <div class="tracker-footnote">
+                    Reserve your tee for ₹1 today. You only pay the full price once we reach 100 pre-orders and officially go live.
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="collection">
+            <div class="section-head">
+                <div>
+                    <h2>Gym T-Shirt Collection</h2>
+                </div>
+                <button type="button" class="btn-metal-outline" id="sectionSizeBtn">Size &amp; Fit Chart</button>
+            </div>
+
+            <div class="product-grid" id="productGrid"></div>
+        </section>
+
+        <section class="section" id="process">
+            <div class="section-head">
+                <div>
+                    <h2>How Pre-Order Works</h2>
+                </div>
+            </div>
+
+            <div class="process-grid">
+                <div class="process-box">
+                    <span class="process-num">1</span>
+                    <h3>Select Cut &amp; Size</h3>
+                    <p>Choose between our 260 GSM oversized pump cover, 210 GSM Raglan compression knit, or 240 GSM tapered training tee.</p>
+                </div>
+                <div class="process-box">
+                    <span class="process-num">2</span>
+                    <h3>₹1 Pre-Order Reservation</h3>
+                    <p>Lock in your reservation for ₹1. Every order moves the live counter closer to our 100-unit launch goal.</p>
+                </div>
+                <div class="process-box">
+                    <span class="process-num">3</span>
+                    <h3>Production &amp; Dispatch</h3>
+                    <p>Once 100 orders are reached, garments go into production and backers complete their balance prior to dispatch.</p>
+                </div>
+                <div class="process-box">
+                    <span class="process-num">4</span>
+                    <h3>Full Store Launch</h3>
+                    <p>Reaching our pre-order goal unlocks our permanent S2 store with stringers, hoodies, and training shorts.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- SLIDE-OVER DRAWER: RESERVATION BAG & CHECKOUT -->
+    <div class="backdrop" id="bagBackdrop" aria-hidden="true">
+        <div class="drawer" role="dialog" aria-label="Pre-Order Bag">
+            <div class="drawer-header">
+                <h3>Pre-Order Reservation Bag</h3>
+                <button type="button" class="close-btn" data-close="bagBackdrop" aria-label="Close Bag">&times;</button>
+            </div>
+
+            <div id="bagItemsList"></div>
+
+            <div id="bagCheckoutArea" style="display: none; margin-top: 16px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--border-hairline); margin-bottom: 18px;">
+                    <span style="font-size: 0.82rem; font-weight: 600; color: var(--text-secondary);">Total Pre-Order Token</span>
+                    <strong style="font-size: 1.15rem;" id="bagTotalText">₹0</strong>
+                </div>
+
+                <form id="checkoutForm">
+                    <div class="field-group">
+                        <label class="field-label" for="custName">Full Name *</label>
+                        <input type="text" id="custName" class="field-input" required placeholder="Aarav Mehta" />
+                    </div>
+                    <div class="field-row">
+                        <div class="field-group">
+                            <label class="field-label" for="custPhone">Phone / WhatsApp *</label>
+                            <input type="tel" id="custPhone" class="field-input" required placeholder="+91 98765 43210" />
+                        </div>
+                        <div class="field-group">
+                            <label class="field-label" for="custEmail">Email *</label>
+                            <input type="email" id="custEmail" class="field-input" required placeholder="name@email.com" />
+                        </div>
+                    </div>
+                    <div class="field-group">
+                        <label class="field-label" for="custAddress">Shipping Address &amp; PIN *</label>
+                        <input type="text" id="custAddress" class="field-input" required placeholder="Apartment, Street, City, PIN Code" />
+                    </div>
+                    <div class="field-group">
+                        <label class="field-label" for="custPayment">Pre-Order Payment Option</label>
+                        <select id="custPayment" class="field-input">
+                            <option value="₹1 Pre-Order Token (Pay Balance on Launch)">₹1 Pre-Order Token (Pay Balance on Launch)</option>
+                            <option value="Pay Full Balance When Store Launches">Pay Full Balance When 100-Unit Goal Unlocks</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn-metal-solid" style="width: 100%; justify-content: center; margin-top: 8px;">
+                        Complete Pre-Order Reservation
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE-OVER DRAWER: SIZE & FIT GUIDE -->
+    <div class="backdrop" id="sizeBackdrop" aria-hidden="true">
+        <div class="drawer" role="dialog" aria-label="Size Guide">
+            <div class="drawer-header">
+                <h3>Garment Specifications (Inches)</h3>
+                <button type="button" class="close-btn" data-close="sizeBackdrop" aria-label="Close Size Guide">&times;</button>
+            </div>
+            <p style="font-size: 0.84rem; color: var(--text-secondary); margin-bottom: 14px;">
+                Oversized Box Tees feature a dropped shoulder and relaxed chest drape. Compression and Tapered cuts are tailored close to the torso and delts.
+            </p>
+            <table class="spec-table">
+                <thead>
+                    <tr>
+                        <th>Size</th>
+                        <th>Oversized Chest</th>
+                        <th>Athletic Chest</th>
+                        <th>Body Length</th>
+                        <th>Sleeve</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td><strong>S</strong></td><td>42.0"</td><td>38.0"</td><td>27.5"</td><td>8.5"</td></tr>
+                    <tr><td><strong>M</strong></td><td>44.0"</td><td>40.0"</td><td>28.5"</td><td>9.0"</td></tr>
+                    <tr><td><strong>L</strong></td><td>46.0"</td><td>42.0"</td><td>29.5"</td><td>9.5"</td></tr>
+                    <tr><td><strong>XL</strong></td><td>48.0"</td><td>44.0"</td><td>30.5"</td><td>10.0"</td></tr>
+                    <tr><td><strong>XXL</strong></td><td>50.0"</td><td>46.0"</td><td>31.5"</td><td>10.5"</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="toast" id="toastBanner">Updated</div>
+
+    <footer>
+        <div>
+            <strong id="footerBrandName">S2</strong> Athletics
+        </div>
+        <div>Pre-Order Store</div>
+    </footer>
+
+    <script>
+        (function () {
+            const storeConfig = {
+                brandName: "S2",
+                currency: "₹",
+                currentReserved: 0,
+                targetGoal: 100,
+                whatsappNumber: "",
+                webhookUrl: ""
+            };
+
+            const products = [
+                {
+                    id: "tee-oversized",
+                    cut: "oversized",
+                    code: "Oversized Fit",
+                    name: "Oversized Box Tee",
+                    gsm: "260 GSM Cotton",
+                    price: 1,
+                    retailPrice: 1299,
+                    summary: "Architectural drop-shoulder silhouette with a high-density ribbed collar and structured boxy drape.",
+                    specs: ["260 GSM", "Drop Shoulder", "Enzyme Washed"],
+                    colors: [
+                        { name: "Brushed Onyx", hex: "#17191f", stroke: "#64748b", logo: "#f1f5f9" },
+                        { name: "Titanium Grey", hex: "#383f4d", stroke: "#94a3b8", logo: "#ffffff" },
+                        { name: "Raw Platinum", hex: "#d5dae2", stroke: "#64748b", logo: "#0f172a" }
+                    ]
+                },
+                {
+                    id: "tee-compression",
+                    cut: "raglan",
+                    code: "Compression Fit",
+                    name: "Raglan Compression Tee",
+                    gsm: "210 GSM Performance Knit",
+                    price: 1,
+                    retailPrice: 1399,
+                    summary: "Four-way stretch technical knit engineered with flatlock seams for upper-body support and contour.",
+                    specs: ["210 GSM", "4-Way Stretch", "Flatlock Seams"],
+                    colors: [
+                        { name: "Carbon Matte", hex: "#111317", stroke: "#64748b", logo: "#cbd5e1" },
+                        { name: "Gunmetal Slate", hex: "#262b36", stroke: "#94a3b8", logo: "#f8fafc" },
+                        { name: "Steel Mist", hex: "#64748b", stroke: "#94a3b8", logo: "#0f172a" }
+                    ]
+                },
+                {
+                    id: "tee-hybrid",
+                    cut: "tapered",
+                    code: "Tapered Fit",
+                    name: "Tapered Training Tee",
+                    gsm: "240 GSM Cotton-Modal",
+                    price: 1,
+                    retailPrice: 1299,
+                    summary: "Fitted through the shoulders and sleeves with a clean straight hem for everyday lifting and recovery.",
+                    specs: ["240 GSM", "Fitted Sleeve", "Breathable Modal"],
+                    colors: [
+                        { name: "Graphite Wash", hex: "#222630", stroke: "#64748b", logo: "#e2e8f0" },
+                        { name: "Mercury Ash", hex: "#4b5563", stroke: "#94a3b8", logo: "#ffffff" },
+                        { name: "Obsidian Black", hex: "#0f1115", stroke: "#64748b", logo: "#94a3b8" }
+                    ]
+                }
+            ];
+
+            const selectionState = {};
+            let bag = [];
+            let orderHistory = [];
+
+            function buildShirtSVG(colorObj, brandLabel, cutType) {
+                const cleanBrand = (brandLabel || "S2").slice(0, 14);
+                const uid = colorObj.hex.replace("#", "") + "_" + cutType;
+
+                const bodyPath = cutType === "oversized"
+                    ? "M52 28 C64 25 73 22 77 20 C85 31 115 31 123 20 C127 22 136 25 148 28 L186 58 L168 92 L144 77 L144 174 C115 176 85 176 56 174 L56 77 L32 92 L14 58 Z"
+                    : cutType === "raglan"
+                        ? "M58 28 C68 25 75 22 78 20 C86 31 114 31 122 20 C125 22 132 25 142 28 L176 56 L160 85 L137 71 L133 173 C111 175 89 175 67 173 L63 71 L40 85 L24 56 Z"
+                        : "M55 28 C66 25 74 22 77 20 C85 31 115 31 123 20 C126 22 134 25 145 28 L180 57 L163 88 L140 74 L138 174 C112 176 88 176 62 174 L60 74 L37 88 L20 57 Z";
+
+                const seamDetails = cutType === "raglan"
+                    ? '<path d="M78 25 Q68 50 63 71 M122 25 Q132 50 137 71" stroke="' + colorObj.stroke + '" stroke-width="1" stroke-dasharray="2 2" stroke-opacity="0.55"/>'
+                    : cutType === "oversized"
+                        ? '<path d="M46 34 L56 77 M154 34 L144 77" stroke="' + colorObj.stroke + '" stroke-width="1" stroke-opacity="0.4"/>'
+                        : '<path d="M55 28 L60 74 M145 28 L140 74" stroke="' + colorObj.stroke + '" stroke-width="1" stroke-opacity="0.4"/>';
+
+                return [
+                    '<svg class="tshirt-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">',
+                    '  <defs>',
+                    '    <radialGradient id="light_' + uid + '" cx="50%" cy="32%" r="65%">',
+                    '      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.16"/>',
+                    '      <stop offset="55%" stop-color="#ffffff" stop-opacity="0.02"/>',
+                    '      <stop offset="100%" stop-color="#000000" stop-opacity="0.34"/>',
+                    '    </radialGradient>',
+                    '  </defs>',
+                    '  <ellipse cx="100" cy="188" rx="46" ry="5" fill="#0f172a" fill-opacity="0.12"/>',
+                    '  <path d="M77 20 C85 26 115 26 123 20 L125 32 C112 38 88 38 75 32 Z" fill="#0b0d11" stroke="' + colorObj.stroke + '" stroke-width="1" stroke-opacity="0.5"/>',
+                    '  <path d="' + bodyPath + '" fill="' + colorObj.hex + '" stroke="' + colorObj.stroke + '" stroke-width="1.5" stroke-linejoin="round"/>',
+                    '  <path d="' + bodyPath + '" fill="url(#light_' + uid + ')"/>',
+                    seamDetails,
+                    '  <path d="M77 20 C85 34 115 34 123 20" stroke="' + colorObj.stroke + '" stroke-width="1.5" stroke-opacity="0.75"/>',
+                    '  <path d="M74 23 C84 38 116 38 126 23" stroke="' + colorObj.stroke + '" stroke-width="0.8" stroke-opacity="0.45"/>',
+                    '  <path d="M72 60 Q78 115 74 166 M128 60 Q122 115 126 166" stroke="#000000" stroke-width="1.2" stroke-opacity="0.14"/>',
+                    '  <text x="100" y="76" text-anchor="middle" fill="' + colorObj.logo + '" font-family="sans-serif" font-weight="800" font-size="' + (cleanBrand.length <= 3 ? "13.5" : "7.5") + '" letter-spacing="' + (cleanBrand.length <= 3 ? "3.8" : "2.2") + '">' + cleanBrand + '</text>',
+                    '  <line x1="83" y1="84" x2="117" y2="84" stroke="' + colorObj.logo + '" stroke-width="0.9" stroke-opacity="0.45"/>',
+                    '</svg>'
+                ].join("");
+            }
+
+            function renderProducts() {
+                const grid = document.getElementById("productGrid");
+                if (!grid) return;
+                grid.innerHTML = "";
+
+                products.forEach(function (product) {
+                    if (!selectionState[product.id]) {
+                        selectionState[product.id] = { colorIdx: 0, size: "L" };
+                    }
+                    const state = selectionState[product.id];
+                    const activeColor = product.colors[state.colorIdx];
+
+                    const card = document.createElement("div");
+                    card.className = "product-card";
+                    card.innerHTML = [
+                        '<div class="product-stage">',
+                        '  <span class="stage-badge-left">' + product.code + '</span>',
+                        buildShirtSVG(activeColor, storeConfig.brandName, product.cut),
+                        '  <span class="stage-badge-right">' + product.gsm + '</span>',
+                        '</div>',
+                        '<div class="product-info">',
+                        '  <div class="product-header-row">',
+                        '    <div class="product-name">' + product.name + '</div>',
+                        '    <div class="product-pricing">',
+                        '      <span class="price-now">' + storeConfig.currency + product.price + '</span>',
+                        '      <span class="price-was">' + storeConfig.currency + product.retailPrice + '</span>',
+                        '    </div>',
+                        '  </div>',
+                        '  <p class="product-summary">' + product.summary + '</p>',
+                        '  <div class="spec-row">',
+                        product.specs.map(function (s) { return '<span class="spec-chip">' + s + '</span>'; }).join(""),
+                        '  </div>',
+                        '  <div class="control-label">',
+                        '    <span>Color: <strong style="color: var(--text-primary);">' + activeColor.name + '</strong></span>',
+                        '  </div>',
+                        '  <div class="swatch-row">',
+                        product.colors.map(function (c, idx) {
+                            return '<button type="button" class="swatch-btn ' + (idx === state.colorIdx ? 'active' : '') + '" style="background: ' + c.hex + ';" title="' + c.name + '" data-action="color" data-product="' + product.id + '" data-index="' + idx + '"></button>';
+                        }).join(""),
+                        '  </div>',
+                        '  <div class="control-label">',
+                        '    <span>Size</span>',
+                        '    <button type="button" data-action="open-size" style="background:none;border:none;color:var(--text-secondary);cursor:pointer;font-size:0.72rem;text-decoration:underline;">Size Spec</button>',
+                        '  </div>',
+                        '  <div class="size-grid">',
+                        ["S", "M", "L", "XL", "XXL"].map(function (sz) {
+                            return '<button type="button" class="size-pill ' + (state.size === sz ? 'active' : '') + '" data-action="size" data-product="' + product.id + '" data-size="' + sz + '">' + sz + '</button>';
+                        }).join(""),
+                        '  </div>',
+                        '  <button type="button" class="btn-metal-solid" style="width: 100%; justify-content: center; margin-top: auto;" data-action="reserve" data-product="' + product.id + '">',
+                        '    Reserve Unit — ' + storeConfig.currency + product.price,
+                        '  </button>',
+                        '</div>'
+                    ].join("");
+                    grid.appendChild(card);
+                });
+            }
+
+            function updateTrackerUI() {
+                const pct = Math.min(100, Math.round((storeConfig.currentReserved / storeConfig.targetGoal) * 100));
+                const remaining = Math.max(0, storeConfig.targetGoal - storeConfig.currentReserved);
+
+                document.getElementById("reservedCountDisplay").textContent = storeConfig.currentReserved;
+                document.getElementById("targetCountDisplay").textContent = storeConfig.targetGoal;
+                document.getElementById("goalPercentBadge").textContent = pct + "% RESERVED";
+                document.getElementById("goalProgressBar").style.width = pct + "%";
+                document.getElementById("remainingUnitsDisplay").textContent =
+                    remaining === 0 ? "Goal Reached" : remaining + " Units";
+                document.getElementById("topAnnouncement").textContent =
+                    storeConfig.brandName + " — ₹1 PRE-ORDER RESERVATIONS OPEN · FULL STORE LAUNCHES AT " + storeConfig.targetGoal + " ORDERS";
+            }
+
+            function updateBrandUI() {
+                document.getElementById("headerBrandName").textContent = storeConfig.brandName;
+                document.getElementById("footerBrandName").textContent = storeConfig.brandName;
+                updateTrackerUI();
+                renderProducts();
+                renderBag();
+            }
+
+            function renderBag() {
+                const totalUnits = bag.reduce(function (sum, item) { return sum + item.qty; }, 0);
+                document.getElementById("bagCounter").textContent = totalUnits;
+
+                const listEl = document.getElementById("bagItemsList");
+                const checkoutArea = document.getElementById("bagCheckoutArea");
+
+                if (bag.length === 0) {
+                    listEl.innerHTML = '<p style="color: var(--text-secondary); font-size: 0.86rem; padding: 24px 0; text-align: center;">Your reservation bag is empty. Select a t-shirt from the collection to reserve your size.</p>';
+                    checkoutArea.style.display = "none";
+                    return;
+                }
+
+                checkoutArea.style.display = "block";
+                let totalCost = 0;
+
+                listEl.innerHTML = bag.map(function (item) {
+                    totalCost += item.price * item.qty;
+                    return [
+                        '<div class="bag-item">',
+                        '  <div>',
+                        '    <div class="bag-item-title">' + item.name + '</div>',
+                        '    <div class="bag-item-sub">' + item.color + ' · Size ' + item.size + ' · ' + storeConfig.currency + item.price + '</div>',
+                        '  </div>',
+                        '  <div class="qty-box">',
+                        '    <button type="button" class="qty-step" data-bag-key="' + item.key + '" data-delta="-1">-</button>',
+                        '    <span style="font-size: 0.85rem; min-width: 18px; text-align: center;">' + item.qty + '</span>',
+                        '    <button type="button" class="qty-step" data-bag-key="' + item.key + '" data-delta="1">+</button>',
+                        '  </div>',
+                        '</div>'
+                    ].join("");
+                }).join("");
+
+                document.getElementById("bagTotalText").textContent = storeConfig.currency + totalCost;
+            }
+
+            function addToBag(productId) {
+                const product = products.find(function (p) { return p.id === productId; });
+                if (!product) return;
+                const st = selectionState[productId];
+                const colorName = product.colors[st.colorIdx].name;
+                const key = productId + "_" + colorName + "_" + st.size;
+
+                const existing = bag.find(function (i) { return i.key === key; });
+                if (existing) {
+                    existing.qty += 1;
+                } else {
+                    bag.push({
+                        key: key,
+                        name: product.name,
+                        color: colorName,
+                        size: st.size,
+                        price: product.price,
+                        qty: 1
+                    });
+                }
+                renderBag();
+                showToast("Reserved " + product.name + " (" + st.size + ")");
+            }
+
+            function openDrawer(backdropId) {
+                const el = document.getElementById(backdropId);
+                if (el) {
+                    el.classList.add("open");
+                    el.setAttribute("aria-hidden", "false");
+                }
+            }
+
+            function closeDrawer(backdropId) {
+                const el = document.getElementById(backdropId);
+                if (el) {
+                    el.classList.remove("open");
+                    el.setAttribute("aria-hidden", "true");
+                }
+            }
+
+            function showToast(msg) {
+                const t = document.getElementById("toastBanner");
+                if (!t) return;
+                t.textContent = msg;
+                t.classList.add("visible");
+                clearTimeout(window.__toastTimer);
+                window.__toastTimer = setTimeout(function () {
+                    t.classList.remove("visible");
+                }, 2800);
+            }
+
+            // Direct Button Listeners
+            document.getElementById("openBagBtn").addEventListener("click", function () {
+                openDrawer("bagBackdrop");
+            });
+
+            document.getElementById("navSizeBtn").addEventListener("click", function (e) {
+                e.preventDefault();
+                openDrawer("sizeBackdrop");
+            });
+
+            document.getElementById("heroSizeBtn").addEventListener("click", function () {
+                openDrawer("sizeBackdrop");
+            });
+
+            document.getElementById("sectionSizeBtn").addEventListener("click", function () {
+                openDrawer("sizeBackdrop");
+            });
+
+            // Delegated Click Handling
+            document.addEventListener("click", function (e) {
+                const closeBtn = e.target.closest("[data-close]");
+                if (closeBtn) {
+                    closeDrawer(closeBtn.getAttribute("data-close"));
+                    return;
+                }
+
+                if (e.target.classList.contains("backdrop")) {
+                    e.target.classList.remove("open");
+                    return;
+                }
+
+                const actionBtn = e.target.closest("[data-action]");
+                if (actionBtn) {
+                    const action = actionBtn.getAttribute("data-action");
+                    const pid = actionBtn.getAttribute("data-product");
+                    if (action === "color") {
+                        selectionState[pid].colorIdx = parseInt(actionBtn.getAttribute("data-index"), 10);
+                        renderProducts();
+                    } else if (action === "size") {
+                        selectionState[pid].size = actionBtn.getAttribute("data-size");
+                        renderProducts();
+                    } else if (action === "reserve") {
+                        addToBag(pid);
+                    } else if (action === "open-size") {
+                        openDrawer("sizeBackdrop");
+                    }
+                    return;
+                }
+
+                const bagStep = e.target.closest("[data-bag-key]");
+                if (bagStep) {
+                    const key = bagStep.getAttribute("data-bag-key");
+                    const delta = parseInt(bagStep.getAttribute("data-delta"), 10);
+                    const idx = bag.findIndex(function (i) { return i.key === key; });
+                    if (idx !== -1) {
+                        bag[idx].qty += delta;
+                        if (bag[idx].qty <= 0) bag.splice(idx, 1);
+                        renderBag();
+                    }
+                    return;
+                }
+            });
+
+            document.getElementById("checkoutForm").addEventListener("submit", async function (e) {
+                e.preventDefault();
+                if (bag.length === 0) return;
+
+                const units = bag.reduce(function (s, i) { return s + i.qty; }, 0);
+                const amount = bag.reduce(function (s, i) { return s + i.qty * i.price; }, 0);
+                const summary = bag.map(function (i) { return i.qty + "x " + i.name + " (" + i.color + ", " + i.size + ")"; }).join("; ");
+
+                const newOrder = {
+                    orderId: "ORD-" + Math.floor(100000 + Math.random() * 900000),
+                    timestamp: new Date().toISOString(),
+                    customerName: document.getElementById("custName").value.trim(),
+                    phone: document.getElementById("custPhone").value.trim(),
+                    email: document.getElementById("custEmail").value.trim(),
+                    address: document.getElementById("custAddress").value.trim(),
+                    payment: document.getElementById("custPayment").value,
+                    items: summary,
+                    totalUnits: units,
+                    totalAmount: storeConfig.currency + amount
+                };
+
+                orderHistory.unshift(newOrder);
+                storeConfig.currentReserved += units;
+                updateTrackerUI();
+
+                if (storeConfig.webhookUrl) {
+                    try {
+                        await fetch(storeConfig.webhookUrl, {
+                            method: "POST",
+                            headers: { "Content-Type": "application/json", "Accept": "application/json" },
+                            body: JSON.stringify(newOrder)
+                        });
+                    } catch (err) {
+                        console.warn("Webhook error:", err);
+                    }
+                }
+
+                if (storeConfig.whatsappNumber) {
+                    const lines = [
+                        "*PRE-ORDER " + newOrder.orderId + "*",
+                        "Name: " + newOrder.customerName,
+                        "Items: " + newOrder.items,
+                        "Total: " + newOrder.totalAmount,
+                        "Address: " + newOrder.address
+                    ];
+                    const text = encodeURIComponent(lines.join("\n"));
+                    window.open("https://wa.me/" + storeConfig.whatsappNumber.replace(/[^0-9]/g, "") + "?text=" + text, "_blank");
+                }
+
+                bag = [];
+                renderBag();
+                document.getElementById("checkoutForm").reset();
+                closeDrawer("bagBackdrop");
+                showToast("Reservation " + newOrder.orderId + " Confirmed");
+            });
+
+            // Initialize UI
+            updateBrandUI();
+        })();
+    </script>
+</body>
+</html>
